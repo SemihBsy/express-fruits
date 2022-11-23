@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head.ejs") %>
+
+  <body>
+    <%- include("../partials/header.ejs") %>
+    <main>
+      <div>
+          <a href="/fruits/new"><button>Create A New Fruit</button></a>
+          <a href="/user/logout"><button>Logout</button></a>
+        <% for (fruit of fruits) { %>
+        <article>
+            <h2 
+            hx-get="/fruits/<%= fruit._id %>"
+            hx-trigger="click"
+            hx-target="div"
+            hx-swap=innerHTML>
+              <%= fruit.name %> - <%= fruit.readyToEat ? "Ripe" : "Not Ripe" %>
+            </h2>
+        </article>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>
